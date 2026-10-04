@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frame Work Studio · 프레임워크 스튜디오</title>
+<meta name="description" content="소수정예 사진작가 팀 Frame Work. 한국 & 일본 통합 운영진과 함께하세요.">
+<style>
+:root{--bg:#000;--fg:#f2efe9;--mute:#9a968e;--line:#2a2a2c;--card:#18181a;--acc:#e8b04a}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.8;word-break:keep-all}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.04em}
+.brand img{height:34px;width:auto}
+.btn{display:inline-block;padding:12px 26px;border-radius:999px;background:var(--acc);color:#111;font-weight:700;text-decoration:none}
+.btn.ghost{background:none;color:var(--fg);border:1px solid var(--line)}
+.hero{display:flex;flex-direction:column;align-items:center;justify-content:space-between;min-height:min(86vh,640px);padding:48px 24px 56px;text-align:center;background:#000 url(hero.jpg) center/contain no-repeat}
+.hero small{display:block;margin-bottom:18px;color:var(--acc);letter-spacing:.3em;font-size:.8rem}
+.hero h1{font-size:clamp(2.2rem,7vw,3.8rem);line-height:1.2;margin:14px 0 20px}
+.hero p{color:var(--mute);max-width:560px;margin:0 auto 32px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:1.5rem;margin-bottom:20px}
+.lead p+p{margin-top:14px}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.tags span{padding:6px 16px;border:1px solid var(--line);border-radius:999px;color:var(--mute);font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.member{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 20px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.member b{display:block;font-size:1.05rem}
+.member span{color:var(--mute);font-size:.88rem}
+.ig{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);color:var(--fg);flex:none;transition:.2s}
+.ig:hover{color:#111;background:var(--acc);border-color:var(--acc)}
+.join{text-align:center}
+.join p{color:var(--mute);margin-bottom:26px}
+footer{padding:32px 0;text-align:center;color:var(--mute);font-size:.85rem;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand"><img src="logo.png" alt="" onerror="this.replaceWith('FRAME WORK')"></div>
+  <a class="btn" href="#join">가입 신청</a>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <small>PHOTOGRAPHER TEAM · KOREA &amp; JAPAN</small>
+  <h1 style="position:absolute;left:-9999px">Frame Work Studio</h1>
+  <div>
+  <p>소수의 팀원이 유연하고 긴밀하게 소통하는 소수정예 사진작가 팀</p>
+  <a class="btn" href="#join">함께하기</a>
+  </div>
+</div>
+
+<section><div class="wrap lead">
+  <h2>About</h2>
+  <p>안녕하세요. 프레임워크 스튜디오입니다. 프레임워크는 매그넘(Magnum)이 아닌, 소수의 팀원이 유연하고 긴밀하게 소통하는 소수정예 팀입니다.</p>
+  <p>저희는 사진, 보정, 프로젝트, 카메라 및 출사지 정보 공유, 전국출사지도 제작 등 다양한 활동을 함께 고민하고 실행해 나가며 깊이 있게 소통하는 것을 목적으로 활동하고 있어요.</p>
+  <div class="tags"><span>사진</span><span>보정</span><span>프로젝트</span><span>카메라 정보</span><span>출사지 공유</span><span>전국출사지도</span></div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>한국 &amp; 일본 통합 운영진</h2>
+  <div class="grid">
+    <div class="member"><div><b>윤성</b><span>@unposed_life12</span></div><a class="ig" href="https://www.instagram.com/unposed_life12/" target="_blank" rel="noopener" aria-label="윤성 인스타그램 (@unposed_life12)" title="@unposed_life12"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></div>
+    <div class="member"><div><b>수현</b><span>@travel_kyoto_26</span></div><a class="ig" href="https://www.instagram.com/travel_kyoto_26/" target="_blank" rel="noopener" aria-label="수현 인스타그램 (@travel_kyoto_26)" title="@travel_kyoto_26"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></div>
+    <div class="member"><div><b>주연</b><span>@whale.__film</span></div><a class="ig" href="https://www.instagram.com/whale.__film/" target="_blank" rel="noopener" aria-label="주연 인스타그램 (@whale.__film)" title="@whale.__film"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></div>
+    <div class="member"><div><b>유진</b><span>@ko._yujin</span></div><a class="ig" href="https://www.instagram.com/ko._yujin/" target="_blank" rel="noopener" aria-label="유진 인스타그램 (@ko._yujin)" title="@ko._yujin"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></div>
+    <div class="member"><div><b>하람</b><span>@ozic_pic</span></div><a class="ig" href="https://www.instagram.com/ozic_pic/" target="_blank" rel="noopener" aria-label="하람 인스타그램 (@ozic_pic)" title="@ozic_pic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></div>
+    <div class="member"><div><b>오둥</b><span>@odungi_photo</span></div><a class="ig" href="https://www.instagram.com/odungi_photo/" target="_blank" rel="noopener" aria-label="오둥 인스타그램 (@odungi_photo)" title="@odungi_photo"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></div>
+  </div>
+</div></section>
+
+<section id="join"><div class="wrap join">
+  <h2>가입 신청</h2>
+  <p>Frame Work와 함께 사진을 이야기하고 싶으신가요?<br>아래 버튼을 눌러 운영진 인스타그램으로 연락해 주세요.</p>
+  <a class="btn" href="https://www.instagram.com/unposed_life12/" target="_blank" rel="noopener">인스타그램으로 가입 신청하기</a>
+</div></section>
+</main>
+
+<footer>© Frame Work Studio. All rights reserved.</footer>
+</body>
+</html>

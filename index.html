@@ -34,13 +34,29 @@ h2{font-size:1.5rem;margin-bottom:20px}
 .ig:hover{color:#111;background:var(--acc);border-color:var(--acc)}
 .join{text-align:center}
 .join p{color:var(--mute);margin-bottom:26px}
+.modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.82);backdrop-filter:blur(6px);opacity:0;transition:opacity .25s}
+.modal[hidden]{display:none}
+.modal.show{opacity:1}
+.modal-box{position:relative;width:100%;max-width:520px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px 28px 30px;text-align:center;transform:translateY(12px);transition:transform .25s}
+.modal.show .modal-box{transform:none}
+.modal-box h3{font-size:1.25rem;margin-bottom:6px}
+.modal-box p{color:var(--mute);font-size:.92rem}
+.modal-x{position:absolute;top:10px;right:14px;background:none;border:0;color:var(--mute);font-size:1.8rem;line-height:1;cursor:pointer}
+.modal-x:hover{color:var(--fg)}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.choice{display:flex;flex-direction:column;align-items:center;gap:6px;padding:22px 10px;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:var(--fg);background:#0c0c0d;transition:.2s}
+.choice svg{border:1px solid var(--line);border-radius:4px;margin-bottom:8px}
+.choice b{font-size:.92rem}
+.choice span{color:var(--acc);font-weight:700;font-size:1.15rem}
+.choice:hover,.choice:focus-visible{border-color:var(--acc);transform:translateY(-3px)}
+@media (max-width:420px){.choices{grid-template-columns:1fr}}
 footer{padding:32px 0;text-align:center;color:var(--mute);font-size:.85rem;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <div class="brand"><img src="logo.png" alt="" onerror="this.replaceWith('FRAME WORK')"></div>
-  <a class="btn" href="#join">가입 신청</a>
+  <a class="btn" href="#join" data-join>가입 신청</a>
 </div></header>
 
 <main>
@@ -49,7 +65,7 @@ footer{padding:32px 0;text-align:center;color:var(--mute);font-size:.85rem;borde
   <h1 style="position:absolute;left:-9999px">Frame Work Studio</h1>
   <div>
   <p>소수의 팀원이 유연하고 긴밀하게 소통하는 소수정예 사진작가 팀</p>
-  <a class="btn" href="#join">함께하기</a>
+  <a class="btn" href="#join" data-join>함께하기</a>
   </div>
 </div>
 
@@ -74,11 +90,34 @@ footer{padding:32px 0;text-align:center;color:var(--mute);font-size:.85rem;borde
 
 <section id="join"><div class="wrap join">
   <h2>가입 신청</h2>
-  <p>Frame Work와 함께 사진을 이야기하고 싶으신가요?<br>아래 버튼을 눌러 운영진 인스타그램으로 연락해 주세요.</p>
-  <a class="btn" href="https://www.instagram.com/unposed_life12/" target="_blank" rel="noopener">인스타그램으로 가입 신청하기</a>
+  <p>Frame Work와 함께 사진을 이야기하고 싶으신가요?<br>아래 버튼을 눌러 참여할 전국출사지도를 선택해 주세요.</p>
+  <a class="btn" href="#join" data-join>가입 신청하기</a>
 </div></section>
 </main>
 
 <footer>© Frame Work Studio. All rights reserved.</footer>
+
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal-box">
+    <button class="modal-x" type="button" aria-label="닫기">&times;</button>
+    <h3 id="modal-title">가입할 지도를 선택해 주세요</h3>
+    <p>선택하면 카카오톡 오픈채팅으로 이동합니다.</p>
+    <div class="choices">
+      <a class="choice" href="https://open.kakao.com/o/gXglLNQi" target="_blank" rel="noopener"><svg viewBox="0 0 36 24" width="72" height="48" aria-hidden="true"><rect width="36" height="24" fill="#fff"/><path d="M12 12A6 6 0 0 1 24 12A3 3 0 0 1 18 12A3 3 0 0 0 12 12Z" fill="#cd2e3a"/><path d="M24 12A6 6 0 0 1 12 12A3 3 0 0 1 18 12A3 3 0 0 0 24 12Z" fill="#0047a0"/><g transform="translate(5.6 5) rotate(-62)" fill="#111"><rect x="-2.6" y="-2.4" width="5.2" height=".8"/><rect x="-2.6" y="-0.4" width="5.2" height=".8"/><rect x="-2.6" y="1.6" width="5.2" height=".8"/></g><g transform="translate(30.4 5) rotate(62)" fill="#111"><rect x="-2.6" y="-2.4" width="2.2" height=".8"/><rect x=".4" y="-2.4" width="2.2" height=".8"/><rect x="-2.6" y="-0.4" width="5.2" height=".8"/><rect x="-2.6" y="1.6" width="2.2" height=".8"/><rect x=".4" y="1.6" width="2.2" height=".8"/></g><g transform="translate(5.6 19) rotate(62)" fill="#111"><rect x="-2.6" y="-2.4" width="5.2" height=".8"/><rect x="-2.6" y="-0.4" width="2.2" height=".8"/><rect x=".4" y="-0.4" width="2.2" height=".8"/><rect x="-2.6" y="1.6" width="5.2" height=".8"/></g><g transform="translate(30.4 19) rotate(-62)" fill="#111"><rect x="-2.6" y="-2.4" width="2.2" height=".8"/><rect x=".4" y="-2.4" width="2.2" height=".8"/><rect x="-2.6" y="-0.4" width="2.2" height=".8"/><rect x=".4" y="-0.4" width="2.2" height=".8"/><rect x="-2.6" y="1.6" width="2.2" height=".8"/><rect x=".4" y="1.6" width="2.2" height=".8"/></g></svg><b>전국출사지도</b><span>한국</span></a>
+      <a class="choice" href="https://open.kakao.com/o/gFKeMNQi" target="_blank" rel="noopener"><svg viewBox="0 0 36 24" width="72" height="48" aria-hidden="true"><rect width="36" height="24" fill="#fff"/><circle cx="18" cy="12" r="7.2" fill="#bc002d"/></svg><b>전국출사지도</b><span>일본</span></a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var m=document.getElementById('modal'),last=null;
+  function open(e){e.preventDefault();last=document.activeElement;m.hidden=false;requestAnimationFrame(function(){m.classList.add('show')});m.querySelector('.choice').focus();document.body.style.overflow='hidden'}
+  function close(){m.classList.remove('show');setTimeout(function(){m.hidden=true},250);document.body.style.overflow='';if(last)last.focus()}
+  document.querySelectorAll('[data-join]').forEach(function(a){a.addEventListener('click',open)});
+  m.addEventListener('click',function(e){if(e.target===m)close()});
+  m.querySelector('.modal-x').addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)close()});
+})();
+</script>
 </body>
 </html>

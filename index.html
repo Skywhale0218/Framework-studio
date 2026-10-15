@@ -53,9 +53,43 @@ footer{padding:32px 0;text-align:center;color:var(--mute);font-size:.82rem;borde
 .choice span{color:var(--acc);font-weight:700;font-size:1.15rem}
 .choice:hover,.choice:focus-visible{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--fg);border-color:var(--acc)}
 @media (max-width:420px){.choices{grid-template-columns:1fr}}
+#bar{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:0 50%;z-index:60}
+body{background-position:0 var(--py,0px)}
+header .wrap{transition:height .25s}
+header.sm .wrap{height:50px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.eyebrow::before{content:"";display:inline-block;width:0;height:1px;background:var(--acc);margin-right:0;vertical-align:middle;transition:width .8s .2s,margin .8s .2s}
+.eyebrow.in::before{width:28px;margin-right:10px}
+.hero .eyebrow::before{width:28px;margin-right:10px}
+.hero h1 img,.hero .sub,.hero .btn{will-change:transform}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.chip{font:inherit;font-size:.88rem;padding:6px 16px;background:#fff;border:1px solid var(--fg);color:var(--fg);cursor:pointer;transition:.15s}
+.chip:hover{border-color:var(--acc);color:var(--acc)}
+.chip.on{background:var(--fg);color:#fff}
+.sublabel{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;letter-spacing:.14em;color:var(--mute);text-transform:uppercase;margin:0 0 14px}
+#collab-wrap{margin-bottom:40px}
+.collab{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.works{columns:3 240px;column-gap:16px}
+.work{position:relative;break-inside:avoid;margin:0 0 16px;background:#fff;border:1px solid var(--fg);overflow:hidden;transition:box-shadow .2s}
+.collab .work{margin:0}
+.work:hover{box-shadow:4px 4px 0 var(--fg)}
+.work img{display:block;width:100%;height:auto}
+.work .ph{display:flex;align-items:center;justify-content:center;aspect-ratio:4/5;color:var(--soft);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;letter-spacing:.14em;background:repeating-linear-gradient(45deg,transparent 0 10px,rgba(43,80,214,.06) 10px 11px)}
+.collab .work .ph{aspect-ratio:16/9}
+.badge{position:absolute;top:10px;left:10px;z-index:2;background:var(--acc);color:#fff;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.7rem;letter-spacing:.1em;padding:2px 9px}
+.credit{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;padding:10px 14px;border-top:1px solid var(--fg);font-size:.85rem}
+.credit a{color:var(--fg);text-decoration:none}
+.credit a:hover{color:var(--acc)}
+.credit small{color:var(--mute)}
+.credit i{font-style:normal;color:var(--acc)}
+.work .instagram-media{margin:0!important;min-width:0!important;max-width:100%!important;width:100%!important;border:0!important}
+.empty{color:var(--mute);padding:30px 0}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.eyebrow::before{transition:none;width:28px;margin-right:10px}}
 </style>
 </head>
 <body>
+<div id="bar"></div>
 <header><div class="wrap">
   <div class="brand"><img src="logo.png" alt="" onerror="this.replaceWith('FRAME WORK')"></div>
   <a class="btn" href="#join" data-join>가입 신청</a>
@@ -90,6 +124,15 @@ footer{padding:32px 0;text-align:center;color:var(--mute);font-size:.82rem;borde
   </div>
 </div></section>
 
+<section id="portfolio"><div class="wrap">
+  <p class="eyebrow">Portfolio</p>
+  <h2>운영진 포트폴리오</h2>
+  <div class="filters" id="filters"></div>
+  <div id="collab-wrap"><p class="sublabel">Collab · 공동 작업</p><div class="collab" id="collab"></div></div>
+  <div id="solo-wrap"><p class="sublabel">Works</p><div class="works" id="works"></div></div>
+  <p class="empty" id="empty" hidden>표시할 작업이 아직 없어요.</p>
+</div></section>
+
 <section id="join"><div class="wrap join">
   <p class="eyebrow">Join us</p>
   <h2>가입 신청</h2>
@@ -120,6 +163,61 @@ footer{padding:32px 0;text-align:center;color:var(--mute);font-size:.82rem;borde
   m.addEventListener('click',function(e){if(e.target===m)close()});
   m.querySelector('.modal-x').addEventListener('click',close);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)close()});
+})();
+</script>
+<script src="portfolio.js"></script>
+<script>
+(function(){
+  var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var M=window.MEMBERS||{},W=window.WORKS||[];
+  /* 스크롤 등장 효과 */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  function reveal(list){list.forEach(function(el,i){if(el.classList.contains('reveal'))return;el.classList.add('reveal');el.style.transitionDelay=Math.min(i%6,5)*70+'ms';io.observe(el)})}
+  reveal([].slice.call(document.querySelectorAll('section .eyebrow, section h2, .lead p, .tags span, .member, .join p, .filters, .sublabel')));
+  /* 포트폴리오: 중복 제거(같은 게시물은 한 번만) */
+  var map=new Map();
+  W.forEach(function(w,i){var k=w.url||('#'+i);if(map.has(k)){var e=map.get(k);e.by=Array.from(new Set(e.by.concat(w.by)));e.img=e.img||w.img}else map.set(k,{by:w.by.slice(),url:w.url||'',img:w.img||''})});
+  var items=Array.from(map.values()),needEmbed=false;
+  function card(w){
+    var el=document.createElement('article');el.className='work';
+    var media;
+    if(w.img)media='<a href="'+(w.url||w.img)+'" target="_blank" rel="noopener"><img src="'+w.img+'" alt="" loading="lazy"></a>';
+    else if(w.url){media='<blockquote class="instagram-media" data-instgrm-permalink="'+w.url+'" data-instgrm-version="14"></blockquote>';needEmbed=true}
+    else media='<div class="ph">PHOTO · 준비 중</div>';
+    var credit=w.by.map(function(h){return '<a href="https://www.instagram.com/'+h+'/" target="_blank" rel="noopener">'+(M[h]||h)+' <small>@'+h+'</small></a>'}).join('<i>×</i>');
+    el.innerHTML=(w.by.length>1?'<span class="badge">COLLAB</span>':'')+media+'<div class="credit">'+credit+'</div>';
+    return el;
+  }
+  var fl=document.getElementById('filters'),cw=document.getElementById('collab-wrap'),sw=document.getElementById('solo-wrap'),
+      c=document.getElementById('collab'),ws=document.getElementById('works'),em=document.getElementById('empty');
+  function render(f){
+    var list=items.filter(function(w){return !f||w.by.indexOf(f)>-1});
+    var co=list.filter(function(w){return w.by.length>1}),so=list.filter(function(w){return w.by.length<2});
+    c.innerHTML='';ws.innerHTML='';needEmbed=false;
+    co.forEach(function(w){c.appendChild(card(w))});so.forEach(function(w){ws.appendChild(card(w))});
+    cw.hidden=!co.length;sw.hidden=!so.length;em.hidden=list.length>0;
+    reveal([].slice.call(document.querySelectorAll('.work')));
+    if(needEmbed){if(window.instgrm)window.instgrm.Embeds.process();else if(!document.getElementById('igjs')){var sc=document.createElement('script');sc.id='igjs';sc.async=true;sc.src='https://www.instagram.com/embed.js';document.body.appendChild(sc)}}
+  }
+  [['','전체']].concat(Object.keys(M).map(function(h){return [h,M[h]]})).forEach(function(p){
+    var b=document.createElement('button');b.type='button';b.className='chip'+(p[0]?'':' on');b.textContent=p[1];
+    b.onclick=function(){fl.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on')});b.classList.add('on');render(p[0])};
+    fl.appendChild(b)});
+  render('');
+  /* 스크롤 모션: 진행 바, 모눈 시차, 히어로 페이드 */
+  var bar=document.getElementById('bar'),hd=document.querySelector('header'),hi=document.querySelector('.hero h1 img'),hs=document.querySelector('.hero .sub'),tk=false;
+  function onScroll(){
+    var y=window.scrollY,h=document.documentElement.scrollHeight-innerHeight;
+    bar.style.transform='scaleX('+(h>0?y/h:0)+')';hd.classList.toggle('sm',y>30);
+    if(RM)return;
+    document.body.style.setProperty('--py',(-y*.22)+'px');
+    var t=Math.min(y/600,1);
+    if(hi){hi.style.transform='translateY('+(y*.16)+'px) scale('+(1-t*.08)+')';hi.style.opacity=1-t*.75}
+    if(hs)hs.style.opacity=1-t*1.2;
+    tk=false;
+  }
+  addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(onScroll)}},{passive:true});
+  onScroll();
 })();
 </script>
 </body>

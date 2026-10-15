@@ -30,6 +30,6 @@ window.WORKS = [
 
 // 영어/일본어 화면에 표시될 이름 (원하는 표기로 수정하세요)
 window.NAMES = {
-  en: { 'unposed_life12':'Yunseong','travel_kyoto_26':'Suhyun','whale.__film':'Juyeon','ko._yujin':'Yujin','ozic_pic':'Haram','odungi_photo':'Odung' },
+  en: { 'unposed_life12':'Yunseong','travel_kyoto_26':'Suhyun','whale.__film':'Jooyeon','ko._yujin':'Yujin','ozic_pic':'Haram','odungi_photo':'Odung' },
   ja: { 'unposed_life12':'ユンソン','travel_kyoto_26':'スヒョン','whale.__film':'ジュヨン','ko._yujin':'ユジン','ozic_pic':'ハラム','odungi_photo':'オドゥン' }
 };
